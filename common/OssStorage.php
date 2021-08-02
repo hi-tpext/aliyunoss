@@ -58,7 +58,7 @@ class OssStorage implements Storage
             $res = $ossClient->uploadFile($bucketName, $name, '.' . $attachment['url']);
 
             if ($res && isset($res['oss-request-url'])) {
-                $ossUrl = $res['oss-request-url'] . (strpos($res['oss-request-url'], '?') ? '&id=' : '?id=') . $attachment['id'];
+                $ossUrl = $res['oss-request-url'];
                 $ossUrl = '//' . preg_replace('/^https?:\/\//', '', $ossUrl); //去掉http协议头，以//开头
                 $attachment['url'] = $ossUrl;
                 $attachment->save();
